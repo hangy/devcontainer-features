@@ -106,9 +106,9 @@ install_using_apt() {
     sudo mv /usr/share/keyrings/microsoft-archive-keyring.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 
     # Temporary workaround until core tools supports bookworm, fallback to bullseye
-    if ["${VERSION_CODENAME}" = "bookworm"]; then
-        $VERSION_ID="11"
-        $VERSION_CODENAME="bullseye"
+    if [ "${VERSION_CODENAME}" = "bookworm" ]; then
+        VERSION_ID="11"
+        VERSION_CODENAME="bullseye"
     fi
 
     echo "deb [arch=${architecture}] https://packages.microsoft.com/$ID/$VERSION_ID/prod ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/azure-functions-core-tools.list
