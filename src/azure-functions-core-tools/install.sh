@@ -103,7 +103,15 @@ install_using_apt() {
     # Import key safely (new 'signed-by' method rather than deprecated apt-key approach) and install
     get_common_setting MICROSOFT_GPG_KEYS_URI
     curl -sSL ${MICROSOFT_GPG_KEYS_URI} | gpg --dearmor > /usr/share/keyrings/microsoft-archive-keyring.gpg
-    echo "deb [arch=${architecture} signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/$ID/$VERSION_ID/prod ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/azure-functions-core-tools.list
+    sudo mv /usr/share/keyrings/microsoft-archive-keyring.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+
+    # Temporary workaround until core tools supports bookworm, fallback to bookworm
+    if [$VERSION_CODENAME = "bookworm"]; then
+        $VERSION_ID = 11
+        $VERSION_CODENAME = "bullseye"
+    fi
+
+    echo "deb [arch=${architecture}] https://packages.microsoft.com/$ID/$VERSION_ID/prod ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/azure-functions-core-tools.list
     apt-get update
 
     if [ "${AZ_VERSION}" = "latest" ] || [ "${AZ_VERSION}" = "lts" ] || [ "${AZ_VERSION}" = "stable" ]; then
