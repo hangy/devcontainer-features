@@ -103,7 +103,7 @@ install_using_apt() {
     # Import key safely (new 'signed-by' method rather than deprecated apt-key approach) and install
     get_common_setting MICROSOFT_GPG_KEYS_URI
     curl -sSL ${MICROSOFT_GPG_KEYS_URI} | gpg --dearmor > /usr/share/keyrings/microsoft-archive-keyring.gpg
-    sudo mv /usr/share/keyrings/microsoft-archive-keyring.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+    mv /usr/share/keyrings/microsoft-archive-keyring.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 
     # Temporary workaround until core tools supports bookworm, fallback to bullseye
     if [ "${VERSION_CODENAME}" = "bookworm" ]; then
