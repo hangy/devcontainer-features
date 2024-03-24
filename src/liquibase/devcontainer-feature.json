@@ -1,0 +1,23 @@
+{
+  "id": "liquibase",
+  "version": "0.0.1",
+  "name": "Liquibase CLI",
+  "documentationURL": "https://github.com/hangy/devcontainer-features/tree/main/src/liquibase",
+  "description": "Installs the liquibase package from apt.",
+  "options": {
+    "version": {
+      "type": "string",
+      "proposals": [
+        "latest"
+      ],
+      "default": "latest",
+      "description": "Select or enter an Liquibase package version. Defaults to latest. (available versions may vary by Linux distribution.)"
+    }
+  },
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/java:1": {}
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}

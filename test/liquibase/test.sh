@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Definition specific tests
-check "version" func --version
+check "version" bash -c "liquibase --version"
 
 # Report result
 reportResults

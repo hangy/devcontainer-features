@@ -3,7 +3,7 @@
 'Features' are self-contained units of installation code and development container configuration. Features are designed
 to install atop a wide-range of base container images (**this repo focuses on `debian` based images**).
 
-This repo contains features used by Jed in his projects. You may find these useful as well.
+This repo contains features used by hangy in his projects. You may find these useful as well.
 
 Issues and PR's are welcome, but no guarantees are made.
 
@@ -11,29 +11,23 @@ You may learn about Features at [containers.dev](https://containers.dev/implemen
 
 ## Known Issues
 
-  * `azure-function-core-tools`
-	* Upstream does not (yet) support Debian 12. https://github.com/Azure/azure-functions-core-tools/issues/3431
-  	* Upstream does not (yet) support AArch64 / arm64 architectures. https://github.com/Azure/azure-functions-core-tools/issues/3112
-  * `mssql-odbc-driver`
-	* Upstream does not (yet) support Debian 12. https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server
+  * `liquibase`
+	* N/A
 
 ## Usage
 
-Azure Functions Core Tools are used when developing Function apps, to create a local development server.
-
-The Microsoft SQL Server ODBC Driver is used to connect to SQL Server instances, including Azure SQL.
+The Liquibase CLI is used to work with liquibase projects.
 
 For example, if you develop Python-based Azure Functions that use SQL Server, your `.devcontainer.json` should look like:
 
 ```jsonc
 {
-	"name": "Python 3",
-	"image": "mcr.microsoft.com/devcontainers/python:3.10-bullseye",
+	"name": "Java & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
-		"ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {
-			"version": "latest"
-		},
-		"ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {
+		"ghcr.io/hangy/devcontainer-features/liquibase:1": {
 			"version": "17"
 		}
 	}
