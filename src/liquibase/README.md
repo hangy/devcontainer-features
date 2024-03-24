@@ -1,13 +1,13 @@
 
-# Liquibase (liquibase)
+# Liquibase CLI (liquibase)
 
-Installs the Liquibase CLI from the official Debian repo.
+Installs the liquibase package from apt.
 
 ## Example Usage
 
 ```json
 "features": {
-    "ghcr.io/hangy/devcontainer-features/liquibase:1": {}
+    "ghcr.io/hangy/devcontainer-features/liquibase:0": {}
 }
 ```
 
@@ -15,7 +15,7 @@ Installs the Liquibase CLI from the official Debian repo.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | Select or enter an Liquibase package version. Defaults to latest. (available versions may vary by Linux distribution.) | string | lates |
+| version | Select or enter an Liquibase package version. Defaults to latest. (available versions may vary by Linux distribution.) | string | latest |
 
 
 
